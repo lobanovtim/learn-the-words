@@ -1,93 +1,120 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { CheckOutlined } from '@ant-design/icons';
-import BackgroundBlock from './components/BackgroundBlock/index.js';
-import HeaderBlock from './components/HeaderBlock/index.js';
-import Paragraph from './components/Paragraph/index.js';
-import Header from './components/Header/index.js';
-import Card from './components/Card/index.js';
-import s from './components/Card/CardsBlock.module.scss';
+import { ClockCircleOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
 
-export const wordsList = [
-  {
-      eng: 'between',
-      rus: 'между'
-  },
-  {
-      eng: 'high',
-      rus: 'высокий'
-  },
-  {
-      eng: 'really',
-      rus: 'действительно'
-  },
-  {
-      eng: 'something',
-      rus: 'что-нибудь'
-  },
-  {
-      eng: 'most',
-      rus: 'большинство'
-  },
-  {
-      eng: 'another',
-      rus: 'другой'
-  },
-  {
-      eng: 'much',
-      rus: 'много'
-  },
-  {
-      eng: 'family',
-      rus: 'семья'
-  },
-  {
-      eng: 'own',
-      rus: 'личный'
-  },
-  {
-      eng: 'out',
-      rus: 'из/вне'
-  },
-  {
-      eng: 'leave',
-      rus: 'покидать'
-  },
-];
+import BackgroundBlock from './components/BackgroundBlock';
+import Button from './components/Button';
+import CardList from './components/CardList';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Paragraph from './components/Paragraph';
+import Section from './components/Section';
 
+import { wordsList } from './wordsList';
 
-function App() {
-    return(
-      <>
-        <HeaderBlock>
-          <Header>
-            Учите слова онлайн
-          </Header>
-          <Paragraph>
-            Воспользуйтесь карточками для запоминания и пополнения словарного запаса
-          </Paragraph>
-        </HeaderBlock>
-        <BackgroundBlock>
-          <div
-          className={s.cardsBlock}
-          >
-          {
-            wordsList.map(({eng, rus}, index) => (
-            <Card key={index} eng={eng} rus={rus} />
-            ))
-          }
-          </div>
-        </BackgroundBlock>
-        <HeaderBlock hideBackground>
-        <Header>
-            Учите слова онлайн снова и снова
-          </Header>
-          <Paragraph>
-            Лучший способ начать учить слова <CheckOutlined />
-          </Paragraph>
-        </HeaderBlock>
-      </>
-    )
+import firstBackground from './assets/background.jpg';
+import secondBackground from './assets/back2.jpg';
+
+import s from './App.module.scss';
+
+class App extends Component {
+    state = {
+      wordArr: wordsList,
+    }
+  
+    handleDeletedItem = (id) => {
+      this.setState(({wordArr}) => {
+        const idx = wordArr.findIndex(item => item.id === id);
+        const newWordArr = [
+          ...wordArr.slice(0, idx),
+          ...wordArr.slice(idx + 1)
+        ];
+        return {
+          wordArr: newWordArr,
+        };
+      });
+    }
+  
+    render() {
+      const { wordArr } = this.state;
+      return(
+        <>
+            <BackgroundBlock
+                backgroundImg={firstBackground}
+                fullHeight
+            >
+                <Header white>
+                    Время учить слова онлайн
+                </Header>
+                <Paragraph white>
+                    Используйте карточки для запоминания и пополняйте активный словарный запас.
+                </Paragraph>
+            </BackgroundBlock>
+            <Section className={s.textCenter}>
+                <Header size="l">
+                    Мы создали уроки, чтобы помочь вам увереннее разговаривать на английском языке
+                </Header>
+                <div className={s.motivation}>
+                    <div className={s.motivationBlock}>
+                        <div className={s.icons}>
+                            <ClockCircleOutlined /> 
+                        </div>
+                        <Paragraph small>
+                            Учитесь, когда есть свободная минутка
+                        </Paragraph>
+                    </div>
+
+                    <div className={s.motivationBlock}>
+                        <div className={s.icons}>
+                            <HomeOutlined />
+                        </div>
+                        <Paragraph small>
+                            Откуда угодно — дома, в&nbsp;офисе, в&nbsp;кафе
+                        </Paragraph>
+                    </div>
+
+                    <div className={s.motivationBlock}>
+                        <div className={s.icons}>
+                            <SmileOutlined />
+                        </div>
+                        <Paragraph small>
+                            Разговоры по-английски без&nbsp;неловких пауз и&nbsp;«mmm,&nbsp;how&nbsp;to&nbsp;say…»
+                        </Paragraph>
+                    </div>
+                </div>
+            </Section>
+            <Section bgColor="#f0f0f0" className={s.textCenter}>
+                <Header size='l'>
+                    Начать учить английский просто
+                </Header>
+                <Paragraph>
+                    Клика по карточкам и узнавай новые слова, быстро и легко!
+                </Paragraph>
+                <CardList
+                refEngIput={el => this.refInput = el}
+                onDeletedItem={this.handleDeletedItem} 
+                item={wordArr}
+                />
+            </Section>
+            <BackgroundBlock
+                backgroundImg={secondBackground}
+            >
+                <Header size="l" white>
+                    Изучайте английский с персональным сайтом помощником
+                </Header>
+                <Paragraph white>
+                    Начните прямо сейчас
+                </Paragraph>
+                <Button
+                onClick={() => this.refInput.current.focus()}
+                >
+                    Начать бесплатный урок
+                </Button>
+            </BackgroundBlock>
+            <Footer/>
+        </>
+        );
+    }
 }
 
 export default App;

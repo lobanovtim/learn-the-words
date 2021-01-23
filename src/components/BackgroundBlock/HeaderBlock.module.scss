@@ -1,6 +1,5 @@
 .cover {
     width: 100%;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,8 +12,18 @@
     background-position: center center;
     background-attachment: fixed;
     background-color: #000;
-    background-image: url(./img/background.jpg);
-
+    background-image: url(../../assets/background.jpg);
+    
+    svg {
+        g {
+            fill: red;
+        }
+    }
+    
+    img {
+        width: 100px;
+    }
+    
     &:after {
         content: '';
         display: block;
@@ -25,24 +34,12 @@
         height: 100vh;
         background-image: linear-gradient(to top, rgba(26,40,120,0.70), rgba(10,143,196,0.70));
     }
-
-    & .wrap {
+    
+    .wrap {
         position: relative;
         z-index: 1;
         padding: 100px 16px;
         max-width: 1024px;
     }
-
-    & .header {
-        font-size: 68px;
-        color: white;
-        padding: 24px 0;
-    }
-
-    & .descr {
-        color: white;
-        padding: 15px 0 30px 0;
-        font-size: 20px;
-        line-height: 1.55;
-    }
 }
+

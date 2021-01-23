@@ -1,8 +1,18 @@
 import React from 'react';
-import s from './Paragraph.module.css';
+import cl from 'classnames';
 
-const Paragraph = ({children}) => {
-    return <p className={s.paragraph}>{children}</p>
+import s from './Paragraph.module.scss';
+
+const Paragraph = ({ children, white = false, small = false, lead = false }) => {
+    return (
+        <p className={cl(s.paragraph, {
+            [s.white]: white,
+            [s.small]: small,
+            [s.lead]: lead,
+        })}>
+            {children}  
+        </p>
+    );
 };
 
 export default Paragraph;
