@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import database from "./services/firebase";
 
 import { ClockCircleOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
 
@@ -18,10 +19,28 @@ import secondBackground from './assets/back2.jpg';
 import s from './App.module.scss';
 
 class App extends Component {
+
     state = {
       wordArr: wordsList,
     }
-  
+
+    componentDidMount() {
+      database.ref().once('value').then(res => {
+        this.setState({
+            wordArr: res.val(),
+        }, this.setNewWord);
+      })
+    }
+
+    // setNewWord = () => {
+    //     const {wordArr} = this.state;
+    //     database.ref().set([...wordArr, {
+    //         id: +new Date(),
+    //         eng: 'mouse',
+    //         rus: 'мышь',
+    //     }])
+    // }
+
     handleDeletedItem = (id) => {
       this.setState(({wordArr}) => {
         const idx = wordArr.findIndex(item => item.id === id);
