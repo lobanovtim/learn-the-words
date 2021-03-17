@@ -13,6 +13,7 @@ class CardList extends Component {
         label: '',
     }
 
+    // refInput = React.createRef();
     // formRef = React.createRef();
     // inputEngRef = React.createRef();
 
@@ -95,6 +96,7 @@ class CardList extends Component {
                     {this.state.label}
                 </div>
             <Search
+                ref={ this.refInput }
                 placeholder='Добавь новое слово для изучения'
                 allowClear
                 enterButton="Добавить"

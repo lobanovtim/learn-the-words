@@ -2,15 +2,14 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBLY_u38lMw8CH26I2P97i9HM4KQIdxb2Y",
-    authDomain: "learn-the-words-e6f4b.firebaseapp.com",
-    databaseURL: "https://learn-the-words-e6f4b-default-rtdb.firebaseio.com",
-    projectId: "learn-the-words-e6f4b",
-    storageBucket: "learn-the-words-e6f4b.appspot.com",
-    messagingSenderId: "793399942043",
-    appId: "1:793399942043:web:0d9ba6ea7d7c104ec91f3e"
-  };
-
+  apiKey: "AIzaSyDwxou0VjwBq-MifSdH1Fe5bOeH0vLj4-o",
+  authDomain: "learn-the-words-6a952.firebaseapp.com",
+  databaseURL: "https://learn-the-words-6a952-default-rtdb.firebaseio.com",
+  projectId: "learn-the-words-6a952",
+  storageBucket: "learn-the-words-6a952.appspot.com",
+  messagingSenderId: "887037277182",
+  appId: "1:887037277182:web:89afa1a96802f6947706af"
+};
 
 firebase.initializeApp(firebaseConfig);
 

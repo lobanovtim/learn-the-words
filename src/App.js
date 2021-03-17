@@ -107,10 +107,10 @@ class App extends Component {
                     Начать учить английский просто
                 </Header>
                 <Paragraph>
-                    Клика по карточкам и узнавай новые слова, быстро и легко!
+                    Кликай по карточкам и узнавай новые слова, быстро и легко!
                 </Paragraph>
                 <CardList
-                refEngIput={el => this.refInput = el}
+                refEngInput={el => this.refInput = el}
                 onDeletedItem={this.handleDeletedItem} 
                 item={wordArr}
                 />

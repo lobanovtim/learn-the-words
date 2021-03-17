@@ -19,10 +19,10 @@ class Card extends React.Component {
     }
 
     onIsRememberClick = () => {
-        console.log(`remember`);
-        this.setState(({isRemebered}) => {
+        this.setState(({isRemembered, done}) => {
             return {
-                isRemebered: !isRemebered,
+                isRemembered: true,
+                done: true,
             }
         });
     }
@@ -34,14 +34,14 @@ class Card extends React.Component {
 
     render() {
         const {eng, rus} = this.props;
-        const {done, isRemebered} = this.state;
+        const {done, isRemembered} = this.state;
 
         return (
             <div className={s.root}>
                 <div
                 className={classnames(s.card, {
                     [s.done]: done,
-                    [s.isRemebered]: isRemebered,
+                    [s.isRemembered]: isRemembered,
                 })}
                 onClick={
                     this.onCardClick
